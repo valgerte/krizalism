@@ -33,7 +33,7 @@
         }
       }
       main {
-        max-width: 1100px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 28px 24px 40px;
       }
@@ -71,7 +71,7 @@
       }
       .grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
       }
       .card {
@@ -94,6 +94,9 @@
       }
       .card.b {
         background: linear-gradient(140deg, #e6f9fc, #e6eef4);
+      }
+      .card.c {
+        background: linear-gradient(130deg, #f1eafa, #e6e1f4);
       }
       .card img {
         display: block;
@@ -146,6 +149,11 @@
       footer a {
         color: inherit;
       }
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
       @media (max-width: 720px) {
         .grid {
           grid-template-columns: 1fr;
@@ -183,6 +191,15 @@
             <div class="tag">ВЕРСИЯ 0.5 · TONE.JS</div>
             <h2>Kawaii-плагин из фиджетов</h2>
             <p>Четыре инструмента-жеста: пупырки ритма и клавиатура-брелок, MIDI-сэмплер из фиджетов Figma с кликером записи, сцена-касание с обработкой и спиннер-лупер голоса. Перформанс по главам истории и виджеинг на второй экран.</p>
+            <span class="go">Открыть →</span>
+          </div>
+        </a>
+        <a class="card c" href="four-gestures/">
+          <img src="docs/screens/four-gestures.png" alt="Четыре жеста: ритм под пальцами, коллекция звуков, касание и вращение" loading="lazy" />
+          <div class="body">
+            <div class="tag">ЧЕТЫРЕ ЖЕСТА · WEB AUDIO</div>
+            <h2>Звук приобретает форму</h2>
+            <p>Нажимай — пупырки ударных и подложек, удерживай — коллекция сэмплов-фигурок и свой записанный звук, касайся — общая обработка, вращай — голос и лупер. Canvas-следы жестов и окно «Проекция».</p>
             <span class="go">Открыть →</span>
           </div>
         </a>
