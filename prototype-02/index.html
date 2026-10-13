@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Кризализм — звуковая фиджет-доска. Нажимай, вращай, касайся и находи собственный ритм."
+    />
+    <title>Кризализм — время прикоснуться к себе</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="proto02.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="./"
+        >кризализм<span>сенсорная музыкальная станция</span></a
+      >
+      <div class="top-actions">
+        <button id="about">Инструкция</button
+        ><button id="projection" title="Открыть окно проекции для второго экрана или проектора">◉ Проекция</button
+        ><button id="theme" aria-label="Переключить тему">◐</button>
+      </div>
+    </header>
+    <main>
+      <section class="intent" aria-label="Настроение">
+        <div>
+          <div class="eyebrow">РЕЖИМ ИНСТРУМЕНТА</div>
+          <div class="intent-buttons">
+            <button data-mood="calm" aria-pressed="true">
+              Успокоиться <span>мягче · медленнее · просторнее</span></button
+            ><button data-mood="focus" aria-pressed="false">
+              Сфокусироваться <span>пульс · ясность · повторение</span>
+            </button>
+          </div>
+        </div>
+        <p id="moodText">
+          Растворись в мягком звуке.<br />Начни с одного прикосновения.
+        </p>
+      </section>
+      <div class="toolbar">
+        <div class="presets" role="group" aria-label="Характер звучания">
+          <button class="selected" data-preset="soft">Мягкость</button
+          ><button data-preset="glass">Стекло</button
+          ><button data-preset="dream">Сон</button>
+        </div>
+        <button class="start" id="power" aria-pressed="false">
+          <i></i><span>Включить звук</span></button
+        ><span id="status" role="status">Начни с любого прикосновения</span>
+      </div>
+      <section class="mixer" aria-label="Настройки звука">
+        <div class="mixer-title">
+          <span class="asterisk">✳</span>
+          <div>Мастер<small>Громкость · пространство · запись</small></div>
+        </div>
+        <label
+          >Громкость <output id="volumeOut">35%</output
+          ><input id="volume" type="range" min="0" max="70" value="35" /></label
+        ><label
+          >Пространство <output id="reverbOut">40%</output
+          ><input
+            id="reverb"
+            type="range"
+            min="0"
+            max="100"
+            value="40" /></label
+        ><label
+          >Эхо <output id="echoOut">20%</output
+          ><input id="echo" type="range" min="0" max="65" value="20" /></label
+        ><button id="record" class="record"><i></i> Записать звук</button
+        ><a id="download" hidden>Скачать</a>
+      </section>
+      <section class="studio" aria-label="Синтезатор, ритм, голос и обработка">
+        <article class="instrument synth-panel">
+          <div class="instrument-top">
+            <span>05 / ЖИВОЙ СИНТЕЗАТОР</span><span>⌃</span>
+          </div>
+          <h2>Синтезатор</h2>
+          <p>
+            Играй касанием или клавишами A W S E D F T G Y H U J K. Можно брать
+            аккорды.
+          </p>
+          <div class="keyboard-scroll">
+            <div id="synthPads" class="synth-pads"></div>
+          </div>
+          <div class="controls">
+            <label
+              >Октава<select id="octave">
+                <option value="-1">−1</option>
+                <option value="0" selected>0</option>
+                <option value="1">+1</option>
+              </select></label
+            ><label
+              >Тембр<select id="wave">
+                <option value="sine">Округлый</option>
+                <option value="triangle">Тёплый</option>
+                <option value="sawtooth">Зернистый</option>
+              </select></label
+            ><label
+              >Яркость<input
+                id="synthTone"
+                type="range"
+                min="250"
+                max="5000"
+                value="1600" /></label
+            ><label
+              >Уровень<input
+                id="synthLevel"
+                type="range"
+                min="0"
+                max="100"
+                value="55"
+            /></label>
+          </div>
+        </article>
+        <article class="instrument rhythm-panel">
+          <div class="instrument-top">
+            <span>06 / РИТМ И ПОДЛОЖКИ</span><span>◌</span>
+          </div>
+          <h2>Ритм-секция</h2>
+          <p>Запусти готовую подложку или меняй шаги ритма.</p>
+          <div class="controls">
+            <label
+              >Подложка<select id="backing">
+                <option value="drift">Течение · воздушные аккорды</option>
+                <option value="pulse">Пульс · тёплый бас</option>
+                <option value="steps">Шаги · лёгкое арпеджио</option>
+                <option value="none">Только ударные</option>
+              </select></label
+            ><label
+              >Темп <output id="bpmOut">68 BPM</output
+              ><input id="bpm" type="range" min="50" max="130" value="68"
+            /></label>
+          </div>
+          <div class="transport">
+            <button id="beatPlay" aria-pressed="false">▶ Запустить</button
+            ><button id="drums" aria-pressed="true">Ударные: вкл.</button
+            ><label class="compact-level"
+              >Уровень<input
+                id="beatLevel"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+            /></label>
+          </div>
+          <div class="sequence-scroll">
+            <div
+              id="sequencer"
+              class="sequencer"
+              aria-label="Ритм из 16 шагов"
+            ></div>
+          </div>
+          <div class="file-row">
+            <label class="file-button"
+              >＋ Своя минусовка<input
+                type="file"
+                id="audioFile"
+                accept="audio/*" /></label
+            ><button id="filePlay" disabled aria-pressed="false">▶ Файл</button
+            ><button id="fileClear" disabled>Убрать</button>
+          </div>
+          <p id="fileStatus" class="hint">
+            Аудиофайл до 30 МБ и 5 минут. Играет отдельным лупом, без подгонки
+            темпа.
+          </p>
+        </article>
+        <article class="instrument vocal-panel">
+          <div class="instrument-top">
+            <span>07 / ГОЛОС И ЛУПЕР</span><span>↻</span>
+          </div>
+          <h2>Вокальный лупер</h2>
+          <p>
+            Напой, прошепчи или произнеси звук. Повтори его и добавь следующий
+            слой.
+          </p>
+          <div class="transport">
+            <button id="mic" aria-pressed="false">Включить микрофон</button
+            ><button id="monitor" disabled aria-pressed="false">
+              Слышать себя: выкл.
+            </button>
+          </div>
+          <p class="hint">
+            Для прослушивания микрофона используй наушники. Голос и файлы
+            остаются в этой вкладке; скачай общую запись, чтобы сохранить.
+          </p>
+          <div class="controls">
+            <label
+              >Реверберация<input
+                id="vReverb"
+                type="range"
+                min="0"
+                max="100"
+                value="65" /></label
+            ><label
+              >Delay<input
+                id="vDelay"
+                type="range"
+                min="0"
+                max="90"
+                value="40" /></label
+            ><label
+              >Уровень голоса<input
+                id="vLevel"
+                type="range"
+                min="0"
+                max="100"
+                value="65"
+            /></label>
+          </div>
+          <div class="loop-controls">
+            <label
+              >Длина лупа<select id="loopLength">
+                <option value="1">1 такт</option>
+                <option value="2" selected>2 такта</option>
+                <option value="4">4 такта</option>
+              </select></label
+            ><button id="loopRecord" disabled>● Записать слой</button
+            ><button id="loopPlay" disabled aria-pressed="false">▶ Слои</button>
+          </div>
+          <progress
+            id="loopProgress"
+            max="1"
+            value="0"
+            aria-label="Прогресс записи лупа"
+          ></progress>
+          <p id="voiceStatus" role="status" class="hint">
+            Включи микрофон, чтобы начать. До 6 слоёв. После первой записи темп
+            фиксируется.
+          </p>
+          <div id="layers" class="layers"></div>
+        </article>
+        <article class="instrument fx-panel">
+          <div class="instrument-top">
+            <span>08 / ОБЩАЯ ОБРАБОТКА</span><span>×</span>
+          </div>
+          <h2>Мастер-эффекты</h2>
+          <p>
+            Эффекты проходят через всю доску: фиджеты, ритм, синтезатор и голос.
+          </p>
+          <div class="fx-presets">
+            <button data-fx="clean">Чисто</button
+            ><button data-fx="haze">Дымка</button
+            ><button data-fx="digital">Цифра</button>
+          </div>
+          <div class="controls">
+            <label
+              >Искажение<input
+                id="drive"
+                type="range"
+                min="0"
+                max="100"
+                value="0" /></label
+            ><label
+              >Цифровое зерно<input
+                id="crush"
+                type="range"
+                min="0"
+                max="100"
+                value="0" /></label
+            ><label
+              >Фильтр<input
+                id="globalTone"
+                type="range"
+                min="300"
+                max="10000"
+                value="2200"
+            /></label>
+          </div>
+          <p class="hint">
+            Начни с чистого звука и добавляй обработку по-чуть-чуть.
+            Пространство и общее эхо — ниже.
+          </p>
+        </article>
+      </section>
+      <details class="tactile-drawer" open>
+        <summary>
+          Тактильные фиджеты <span>хлопки · вращение · шорох · удержание</span>
+        </summary>
+        <section class="board" aria-label="Интерактивная звуковая доска">
+          <article class="module bubbles">
+            <div class="module-heading">
+              <span>01 / НАЖИМАЙ</span><span>● ● ●</span>
+            </div>
+            <div class="bubble-grid" id="bubbles"></div>
+            <div class="module-foot">
+              <h2>Маленькие радости</h2>
+              <span>мягкие хлопки под пальцами</span>
+            </div>
+          </article>
+          <article class="module orbit">
+            <div class="module-heading">
+              <span>02 / ВРАЩАЙ</span><span aria-hidden="true">↻</span>
+            </div>
+            <div class="ring-area">
+              <div
+                id="ring"
+                class="ring"
+                role="slider"
+                tabindex="0"
+                aria-label="Кольцо с тихими щелчками"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+              >
+                <span class="ring-mark"></span>
+                <div class="ring-hole">
+                  <span>по кругу<br />и снова</span>
+                </div>
+              </div>
+            </div>
+            <div class="module-foot">
+              <h2>Своя орбита</h2>
+              <span
+                >веди по кругу<span class="keyboard-hint">
+                  · ← → на клавиатуре</span
+                ></span
+              >
+            </div>
+          </article>
+          <article class="module touch">
+            <div class="module-heading">
+              <span>03 / КАСАЙСЯ</span><span>≈</span>
+            </div>
+            <div
+              id="silk"
+              class="silk"
+              role="slider"
+              tabindex="0"
+              aria-label="Шёлк: проведи по поверхности или используй стрелки"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="50"
+            >
+              <div class="ridges"></div>
+              <div class="touch-light"></div>
+              <span>проведи по поверхности</span>
+            </div>
+            <div class="module-foot">
+              <h2>Тихий шорох</h2>
+              <span>из стороны в сторону, в своём темпе</span>
+            </div>
+          </article>
+          <article class="module cloud">
+            <div class="module-heading">
+              <span>04 / УДЕРЖИВАЙ</span><span>✧</span>
+            </div>
+            <div class="cloud-area">
+              <button
+                id="cloud"
+                class="cloud-object"
+                aria-label="Облако: удерживай для ровного фона"
+              >
+                <span>выдохни</span>
+              </button>
+              <div class="halo"></div>
+            </div>
+            <div class="module-foot">
+              <h2>Можно отпустить</h2>
+              <span>удерживай · отпусти, когда закончишь</span>
+            </div>
+          </article>
+        </section>
+      </details>
+      <footer>
+        <span>Отдых не нужно заслуживать.</span
+        ><span>КРИЗАЛИЗМ / ПРОТОТИП 02</span
+        ><button id="reset">Начать заново ↺</button>
+      </footer>
+    </main>
+    <dialog id="info">
+      <button class="close" aria-label="Закрыть">×</button>
+      <div class="eyebrow">ОБ ЭТОЙ ПАУЗЕ</div>
+      <h2>Звуки из<br />маленьких жестов.</h2>
+      <p>
+        Кризализм — цифровая доска привычных повторяющихся движений. Она
+        задумана как сенсорная звуковая практика, в том числе для людей с СДВГ:
+        можно выбрать приятный стимул и повторять движение в собственном темпе.
+        Здесь нет цели, таймера и оценки результата.
+      </p>
+      <p>
+        Пузырьки мягко хлопают. Кольцо перебирает тихие щелчки. Поверхность
+        шуршит под движением. Облако создаёт ровный гул, пока ты его держишь.
+      </p>
+      <p>
+        Выбери «Успокоиться» или «Сфокусироваться». Добавь живой синтезатор,
+        готовую подложку или свой голос. Вокальный лупер записывает до шести
+        слоёв одинаковой длины; новые слои начинаются на границе цикла. Кнопка
+        «Записать звук» сохраняет общий микс.
+      </p>
+      <small
+        >Клавиатура: Tab — выбрать объект; Enter / пробел — нажать; стрелки —
+        управлять кольцом и поверхностью. Esc — выключить звук.</small
+      >
+    </dialog>
+    <script type="module" src="instruments.js"></script>
+  </body>
+</html>

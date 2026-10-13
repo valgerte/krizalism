@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="description" content="Кризализм — звуковая фиджет-доска и браузерный синтезатор. Версии проекта." />
+    <title>Кризализм — версии</title>
+    <style>
+      :root {
+        --bg: #f6f6f6;
+        --ink: #555;
+        --muted: #737278;
+        --line: #dfdce5;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #252331;
+          --ink: #e7e0ed;
+          --muted: #b0a6bd;
+          --line: #494352;
+        }
+        .card {
+          filter: brightness(0.82);
+        }
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 24px 40px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        font-size: 28px;
+        letter-spacing: -1px;
+      }
+      .brand span {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      header p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--muted);
+        text-align: right;
+      }
+      .eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.7px;
+        color: var(--muted);
+        margin: 28px 0 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ffffffee;
+        border-radius: 26px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #615664;
+        box-shadow: 0 12px 32px #5b456309, inset 0 1px 1px white;
+        transition: transform 0.25s, box-shadow 0.25s;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px #5b456318;
+      }
+      .card.a {
+        background: linear-gradient(145deg, #faeef7, #f5e3ee);
+      }
+      .card.b {
+        background: linear-gradient(140deg, #e6f9fc, #e6eef4);
+      }
+      .card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        border-bottom: 1px solid #ffffffaa;
+      }
+      .body {
+        padding: 18px 22px 22px;
+      }
+      .tag {
+        font-size: 9px;
+        letter-spacing: 1.7px;
+        color: #706575;
+      }
+      .card h2 {
+        font-weight: 400;
+        font-size: 22px;
+        letter-spacing: -0.5px;
+        margin: 10px 0 8px;
+      }
+      .card p {
+        font-size: 12px;
+        line-height: 1.6;
+        margin: 0;
+        color: #776c7b;
+      }
+      .go {
+        display: inline-block;
+        margin-top: 14px;
+        font-size: 12px;
+        border: 1px solid #fff;
+        background: #ffffff99;
+        border-radius: 99px;
+        padding: 8px 14px;
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: var(--muted);
+      }
+      footer a {
+        color: inherit;
+      }
+      @media (max-width: 720px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-direction: column;
+          align-items: start;
+        }
+        header p {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="brand">кризализм<span>звуковая фиджет-доска · браузерный синтезатор</span></div>
+        <p>Нажимай, вращай, касайся, удерживай.<br />Каждый фиджет — звук и пауза.</p>
+      </header>
+      <div class="eyebrow">ВЕРСИИ ПРОЕКТА</div>
+      <div class="grid">
+        <a class="card a" href="prototype-02/">
+          <img src="docs/screens/prototype-02-light.png" alt="Прототип 02: синтезатор, ритм, лупер, эффекты и фиджеты" loading="lazy" />
+          <div class="body">
+            <div class="tag">ПРОТОТИП 02 · WEB AUDIO</div>
+            <h2>Сенсорная музыкальная станция</h2>
+            <p>Синтезатор на 25 клавиш, ритм-секция на 16 шагов с подложками, вокальный лупер до 6 слоёв, мастер-эффекты и четыре тактильных фиджета. Окно «Проекция» для проектора: каждое действие оставляет визуальный след.</p>
+            <span class="go">Открыть →</span>
+          </div>
+        </a>
+        <a class="card b" href="tone-v0.5/">
+          <img src="docs/screens/tone-v0.5-focus.png" alt="Версия 0.5: kawaii-плагин с фиджетами из Figma" loading="lazy" />
+          <div class="body">
+            <div class="tag">ВЕРСИЯ 0.5 · TONE.JS</div>
+            <h2>Kawaii-плагин из фиджетов</h2>
+            <p>Четыре инструмента-жеста: пупырки ритма и клавиатура-брелок, MIDI-сэмплер из фиджетов Figma с кликером записи, сцена-касание с обработкой и спиннер-лупер голоса. Перформанс по главам истории и виджеинг на второй экран.</p>
+            <span class="go">Открыть →</span>
+          </div>
+        </a>
+      </div>
+      <footer>
+        <span>Отдых не нужно заслуживать.</span>
+        <span><a href="https://github.com/valgerte/krizalism">исходный код и описание</a></span>
+      </footer>
+    </main>
+  </body>
+</html>
